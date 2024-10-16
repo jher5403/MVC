@@ -1,0 +1,1 @@
+<h1>Blogs View</h1>
