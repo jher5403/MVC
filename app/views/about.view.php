@@ -8,4 +8,3 @@ $this->view('includes/register.modal');
 </div>
 
 <?php $this->view('includes/footer') ?>
-

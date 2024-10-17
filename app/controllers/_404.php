@@ -1,8 +1,13 @@
 <?php
+namespace Controller;
 
-class _404 extends Controller
+defined('ROOTPATH') OR exit('Error: Access denied.');
+
+class _404
 {
-    public function index($a = '', $b = '', $c = '')
+    use MainController;
+
+    public function index()
     {
         echo '404 Controller not Found';
     }

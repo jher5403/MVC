@@ -1,6 +1,9 @@
 <?php
+namespace Controller;
 
-class Controller
+defined('ROOTPATH') OR exit('Error: Access denied.');
+
+Trait MainController
 {
     public function view($name)
     {

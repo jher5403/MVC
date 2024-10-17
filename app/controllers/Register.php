@@ -3,12 +3,13 @@ namespace Controller;
 
 defined('ROOTPATH') OR exit('Error: Access denied.');
 
-class About
+class Register
 {
     use MainController;
-
+    
     public function index()
     {
-        $this->view('about');
+        
+        $this->view('blogs');
     }
 }

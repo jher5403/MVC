@@ -1,11 +1,17 @@
 <?php
+namespace Controller;
 
-class Home extends Controller
+use Model\User;
+
+defined('ROOTPATH') OR exit('Error: Access denied');
+
+class Home
 {
-    public function index($a = '', $b = '', $c = '')
-    {
-        //echo 'Home Controller';
+    use MainController;
 
+    public function index()
+    {
+        
         $this->view('home');
     }
 }
