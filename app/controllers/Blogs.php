@@ -7,10 +7,11 @@ class Blogs
 {
     use MainController;
     
-    /**Where Example. Returns all public blogs.
+    /*
+        Where Example. Returns all public blogs.
             $arr['privacy_filter'] = 'public';
             $result = $blog->where($arr);
-        
+            
         Insert Example. Inserts blog with following attributes.
             $arr['creator_email'] = 'example@example.com';
             $arr['title'] = 'Generic Blog Title';
@@ -29,7 +30,8 @@ class Blogs
             $result = $blog->findAll();
 
         Shows Result Array.
-            show($result); */
+            show($result); 
+    */
 
     public function index()
     {

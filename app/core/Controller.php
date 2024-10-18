@@ -9,6 +9,7 @@ Trait MainController
     {
         $filename = "../app/views/".$name.".view.php";
 
+        // If file exists, show view.
         if(file_exists($filename)) {
             require $filename;
         } else {

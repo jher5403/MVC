@@ -26,6 +26,7 @@ class Session
 
         if (is_array($keyOrArr))
         {
+            // For each element in array. Store as arraykey: value pair.
             foreach ($keyOrArr as $key => $value) {
                 $_SESSION[$this->mainkey][$key] = $value;
             }
