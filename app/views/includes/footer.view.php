@@ -3,6 +3,3 @@
         </div>
         <script src="<?=ROOT?>/assets/js/jquery-3.7.1.min.js"></script>
         <script src="<?=ROOT?>/assets/js/bootstrap.js"></script>
-        <script src="<?=ROOT?>/assets/js/blog.grid.js"></script>
-    </body>
-</html>

@@ -1,11 +1,14 @@
 <html lang="en" class="h-100" data-bs-theme="auto">
+    
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Welcome to Hell</title>
         <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/home.css">
+        <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/blog-grid.css">
     </head>
+
     <body>
         <div style="padding: 4rem 2rem; margin-bottom: 2rem; background-image: url('<?=ROOT?>/assets/images/banner.png'); background-size: cover; background-position: center;">
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">

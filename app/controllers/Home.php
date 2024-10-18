@@ -13,6 +13,7 @@ class Home
     use MainController;
 
     protected $displayType;
+    protected $currentBlogs;
     
     public function index()
     {
@@ -25,23 +26,33 @@ class Home
 
         // Get only public blogs
         $arr['privacy_filter'] = 'public';
-
-        // Set public_blogs array as 
         $result = $blog->where($arr);
-        $ses->set('public_blogs', $result);
+
+        // Adds image data (directory & file array) to 
+        foreach($result as &$row) {
+            $blog_dir = ('assets/images/'.$row->blog_id.'/');
+            $blog_files = array_values(array_diff(scandir($blog_dir), array('..', '.')));
+            $blog_images = array('dir' => $blog_dir, 'images' => $blog_files);
+            (array)$row = array_merge((array)$row, $blog_images);
+        }
+        
+        // Set public_blogs array as key
+        $ses->set('public_blogs', json_encode($result));
 
         // Sets display type
         $ses->set('blog_display_type', 'Public Blogs');
 
-        // Show value in session array.
+        // Set values for attribute class
         $this->displayType = $ses->get('blog_display_type');
-        show($ses->get('public_blogs'));
+        $this->currentBlogs = $ses->get('public_blogs');
+
+        //show($ses->get('public_blogs'));
         $this->view('home');
     }
 
     public function register()
     {
-        show($_POST);
+        //show($_POST);
         $user = new User;
         $user->insert($_POST);
         redirect('home');

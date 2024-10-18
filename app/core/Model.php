@@ -8,7 +8,7 @@ Trait Model
     use \Database;
     protected $limit = 30;
     protected $offset = 0;
-    protected $order_type = 'desc'; // Can be desc, or asc,
+    protected $order_type = 'asc'; // Can be desc, or asc,
     protected $order_column = 'blog_id'; // What attribute to order by,
 
     /**
