@@ -58,4 +58,15 @@ class Home
         redirect('home');
     }
 
+    public function abook()
+    {
+        $this->view('abook');
+    }
+
+    public function template()
+    {
+        $this->view('template');
+    }
+
+
 }

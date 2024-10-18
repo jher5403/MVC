@@ -6,10 +6,11 @@ defined('ROOTPATH') OR exit('Error: Access denied.');
 Trait Model
 {
     use \Database;
-    protected $limit = 30;
-    protected $offset = 0;
-    protected $order_type = 'asc'; // Can be desc, or asc,
-    protected $order_column = 'blog_id'; // What attribute to order by,
+    protected $limit = 30;                  // Amount of queries performed.
+    protected $offset = 0;                  // Dunno what for
+    protected $table;                       // Table used in query. **MUST BE DEFINED BY SUB CLASS**
+    protected $order_type = 'asc';          // Can be desc, or asc,
+    protected $order_column = 'blog_id';    // What attribute to order by,
 
     /**
      * $data: What your looking for.

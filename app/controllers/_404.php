@@ -9,6 +9,6 @@ class _404
 
     public function index()
     {
-        echo '404 Controller not Found';
+        $this->view('_404');
     }
 }

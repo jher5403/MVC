@@ -1,0 +1,50 @@
+.container#main-body {
+    min-height: 1095px;
+    max-width: 1400px;
+}
+
+.nav.nav-pills {
+    padding: 10px; 
+    background-color: white; 
+    border-radius: 30px;
+}
+
+.nav-items {
+    font-size: 1.2rem; 
+    padding: 10px, 20px;
+}
+
+.container.banner-contents {
+    max-width: 80%;
+    margin: auto;
+    display: inline-flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer {
+    padding: 2rem 1rem; 
+    margin-top: 2rem;
+    min-height:100%; width: 100%; 
+    text-align:center;
+}
+
+.banner {
+    display: flex; 
+    padding: 1rem; 
+    margin-bottom: 2rem;
+    background-size: cover;
+    background-position: center;
+}
+
+.img-fluid.logo {
+    border:3px solid #000000; 
+    background-color: white;
+    padding: 10px;
+    display: block; 
+    border-radius: 25%; 
+    object-fit: cover;
+    min-width: 75px;
+    max-width: 150px;
+    height: auto;
+}

@@ -1,10 +1,16 @@
+<!--
+Use and modify this template for other page views
+
+Contains external CSS for Bootstrap and Components (Banner, Footer, etc...)
+Contains JQuery and Boostrap script dependencies.
+-->
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
     <?php $this->view('includes/head.tag') ?>
-    
-    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/blog-grid.css">
+
+    <!--Add Head & CSS Content-->
     <title>Template Page Title</title>
 </head>
 
@@ -14,17 +20,17 @@
 
     <section id="page-body">
         <div class='container' id="main-body">
-            <h1 class="display-5">Home | <?=$this->displayType?> </h1>
-            <div class="row" id="blog-row"></div>
+            <h1 class="display-5">Template Header</h1>
+            <!--Add Main Content-->
         </div>
     </section>
 
     <?php $this->view('includes/footer') ?>
-    <script src="<?=ROOT?>/assets/js/blog.grid.js"></script>
+    <!--Add Non Bootstrap & JQuery Libraries-->
 
     <script>
-        const blogs = <?=$this->currentBlogs?>;
-        displaySortedBlogs();
+        // Get JavaScript PHP constants...
+        // Run JavaScript Methods...
     </script>
 </body>
 
