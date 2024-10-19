@@ -14,13 +14,26 @@ class Home
 
     protected $displayType;
     protected $currentBlogs;
-    
-    public function index()
+
+    public function index() 
     {
-        // Start session?
-        // Get and store public blogs.
-        // Call blogs array into js const.
-        // Show public blogs.
+        $ses = new \Core\Session;
+        $this->displayType = $ses->get('blog_display_type');
+        $this->currentBlogs = $ses->get('public_blogs');
+
+        // Use switchase maybe?
+        if (empty($this->displayType))
+        {
+            $this->getPublicBlogs();
+            //show('getting blogs from if');
+        }
+
+        //show('getting blogs from session');
+        $this->view('home');
+    }
+    
+    public function getPublicBlogs()
+    {
         $ses = new \Core\Session;
         $blog = new Blog;
 
@@ -47,14 +60,55 @@ class Home
         $this->currentBlogs = $ses->get('public_blogs');
 
         //show($ses->get('public_blogs'));
-        $this->view('home');
+        //$this->view('home');
     }
+
+    public function getSelectBlogs($sort = '', $title='' ,$min = '', $max = '') {
+        $blog = new Blog;
+
+        switch ($sort) {
+            case "A_ASC":
+                $sort = "title ASC";
+                break;
+            case "A_DESC":
+                $sort = "title DESC";
+                break;
+            case "CH_ASC":
+                $sort = "event_date ASC";
+                break;
+            case "CH_DESC":
+                $sort = "event_date DESC";
+                break;
+        }
+
+        $result = $blog->between('event_date', "{$min}", "{$max}", "{$sort}", "{$title}");
+
+        foreach($result as &$row) {
+            $blog_dir = ('assets/images/'.$row->blog_id.'/');
+            $blog_files = array_values(array_diff(scandir($blog_dir), array('..', '.')));
+            $blog_images = array('dir' => $blog_dir, 'images' => $blog_files);
+            (array)$row = array_merge((array)$row, $blog_images);
+        }
+
+        echo json_encode($result, JSON_INVALID_UTF8_IGNORE);
+    }
+    
+    // Get Blogs sorted by creation date
+    // Get Blogs by search bar
+    // Get Blogs by chronology
 
     public function register()
     {
         //show($_POST);
         $user = new User;
         $user->insert($_POST);
+        redirect('home');
+    }
+
+    public function logout()
+    {
+        $ses = new \Core\Session;
+        $ses->logout();
         redirect('home');
     }
 

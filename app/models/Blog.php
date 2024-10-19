@@ -7,6 +7,8 @@ class Blog
 {
     use Model;
 
+    protected $order_type = 'asc';
+    protected $order_column = 'blog_id';
     protected $table = 'blogs';
     protected $allowed_columns = [
         'creator_email',

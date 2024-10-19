@@ -113,31 +113,6 @@ function message(string $msg = null, bool $clear = false)
     return false;
 }
 
-function URL($key):mixed
-{
-    switch ($key) {
-        case 'page':
-        case 0:
-            return APP('URL')[0] ?? null;
-            break;
-        case 'section':
-        case 'slug':
-        case 1:
-            return APP('URL')[1] ?? null;
-            break;
-        case 'action':
-        case 2:
-            return APP('URL')[2] ?? null;
-            break;
-        case 'id':
-            return APP('URL')[3] ?? null;
-            break;
-        default:
-            return null;
-            break;
-    }
-}
-
 /**
  * Retains checkbox input after page refresh or error.
  */

@@ -8,13 +8,16 @@ Trait Model
     use \Database;
     protected $limit = 30;                  // Amount of queries performed.
     protected $offset = 0;                  // Dunno what for
-    protected $table;                       // Table used in query. **MUST BE DEFINED BY SUB CLASS**
     protected $order_type = 'asc';          // Can be desc, or asc,
     protected $order_column = 'blog_id';    // What attribute to order by,
+    // ORDER BY column1 DESC, column2
+    protected $order = ['column' => 'blog_id', 'type' => 'asc'];
+    //protected $table;                     // Table used in query. **MUST BE DEFINED BY SUB CLASS**
 
     /**
-     * $data: What your looking for.
-     * $filter: What your filtering out
+     * 
+     * $data: Array of keys your searching for.
+     * $filter: Array of keys your filtering out.
      */
     public function where($data, $filter = []) 
     {
@@ -38,6 +41,29 @@ Trait Model
 
         return $result;
         
+    }
+
+    /**
+     * Select all rows between a given attribute range.
+     * 
+     * SELECT * FROM `blogs` WHERE privacy_filter = 'public' AND (event_date BETWEEN '2024-05-10' AND '2024-08-07');
+     * SELECT * FROM `blogs` WHERE privacy_filter = 'public' AND (title LIKE '%$a%') AND (event_date BETWEEN '2024-05-10' AND '2024-08-07'); 
+     */
+    public function between($col, $min, $max, $sort, $title) {
+        $query = "SELECT * FROM $this->table WHERE privacy_filter = 'public' ";
+
+        if ($title !== '') {
+            $query .= "AND (title LIKE '%$title%') ";
+        }
+
+        if (($max !== '') && ($min !== '') && ($col !== '')) 
+        {
+            $query .= "AND $col BETWEEN '{$min}' AND '{$max}' ";
+        }
+        $query .= "ORDER BY ".$sort;
+        //show($query);
+
+        return $this->query($query);
     }
 
     public function findAll()
@@ -118,7 +144,6 @@ Trait Model
     {
         $data[$id_col] = $id;
         $query = "DELETE FROM $this->table WHERE $id_col = :$id_col ";
-        //echo $query;
         $this->query($query, $data);
 
         return false;
