@@ -10,7 +10,8 @@ function displaySortedBlogs(sortOrder = 'asc') {
     });
 }
 
-function createCard(blog) {
+function createCard(blog)
+{
     const card = document.createElement("div");
     card.className = 'card';
     card.id = `blog-${blog.blog_id}`;
@@ -52,7 +53,8 @@ function createCard(blog) {
     blogRow.appendChild(card);
 }
 
-function fillModal(blog) {
+function fillModal(blog)
+{
     document.getElementById('card-modal-title').innerHTML = blog.title;
     document.getElementById('card-modal-img').setAttribute('src', `${blog.dir}${blog.images[0]}`);
     document.getElementById('card-modal-desc').innerHTML = blog.description;

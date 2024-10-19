@@ -8,8 +8,6 @@ Trait Model
     use \Database;
     protected $limit = 30;                  // Amount of queries performed.
     protected $offset = 0;                  // Dunno what for
-    protected $order_type = 'asc';          // Can be desc, or asc,
-    protected $order_column = 'blog_id';    // What attribute to order by,
     // ORDER BY column1 DESC, column2
     protected $order = ['column' => 'blog_id', 'type' => 'asc'];
     //protected $table;                     // Table used in query. **MUST BE DEFINED BY SUB CLASS**
@@ -34,13 +32,22 @@ Trait Model
         }
 
         $query = trim($query, ' && ');
-        $query .= " ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
+        //$query .= " ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
         $data_merge = array_merge($data, $filter);
 
         $result = $this->query($query, $data_merge);
 
         return $result;
         
+    }
+
+    public function whereSimple($attributes, $filter) 
+    {
+        $query = "SELECT $attributes FROM $this->table WHERE $filter";
+        show($query);
+        $result = $this->query($query);
+
+        return $result;
     }
 
     /**
@@ -61,7 +68,6 @@ Trait Model
             $query .= "AND $col BETWEEN '{$min}' AND '{$max}' ";
         }
         $query .= "ORDER BY ".$sort;
-        //show($query);
 
         return $this->query($query);
     }
@@ -106,6 +112,7 @@ Trait Model
                 }
             }
         }
+
         $keys = array_keys($data);
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES (:".implode(',:', $keys).")";
         $this->query($query, $data);
