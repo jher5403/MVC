@@ -31,9 +31,12 @@ function createCard(blog)
     cardLink.setAttribute('data-bs-toggle', "modal");
     cardLink.className = 'stretched-link';
     cardLink.onclick = function () { fillModal(blog); };
+    
     const cardImage = document.createElement("img");
+    
     cardImage.className = "card-img";
     cardImage.src = `${blog.dir}${blog.images[0]}`;
+    
     cardBody.appendChild(cardImage);
     cardBody.appendChild(cardLink);
 

@@ -44,7 +44,7 @@ Trait Model
     public function whereSimple($attributes, $filter) 
     {
         $query = "SELECT $attributes FROM $this->table WHERE $filter";
-        show($query);
+        //show($query);
         $result = $this->query($query);
 
         return $result;
@@ -115,6 +115,7 @@ Trait Model
 
         $keys = array_keys($data);
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES (:".implode(',:', $keys).")";
+        echo $query;
         $this->query($query, $data);
         
         return false;
@@ -139,7 +140,7 @@ Trait Model
         }
 
         $query = trim($query, ', ');
-        $query .= " where $id_col = :$id_col ";
+        $query .= " WHERE $id_col = :$id_col ";
 
         $data[$id_col] = $id; // Has to go near end for some reason.
         $this->query($query, $data);

@@ -1,7 +1,7 @@
 <header id="page-header">
     <div class="banner" style="background-image: url('<?=ROOT?>/assets/images/banner.png')">
         <div class="container banner-contents">
-            <img class='img-fluid logo' src="<?=ROOT?>assets/images/photoABCDLogo.png" alt="Photo ABCD Logo"></img>
+            <img class='img-fluid logo' src="<?=ROOT?>assets/images/photoABCDLogo.png" alt="Photo ABCD Logo">
             <ul class="nav nav-pills">
 
                 <li class="nav-item">
@@ -9,7 +9,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/about"">About</a>
+                    <a class="nav-link" href="<?=ROOT?>home/about">About</a>
                 </li>
 
                 <li class="nav-item">

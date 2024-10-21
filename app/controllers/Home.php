@@ -25,11 +25,14 @@ class Home
         if (empty($this->displayType))
         {
             $this->getPublicBlogs();
-            //show('getting blogs from if');
         }
 
-        //show('getting blogs from session');
         $this->view('home');
+    }
+
+    public function about()
+    {
+        $this->view('about');
     }
     
     public function getPublicBlogs()
@@ -43,7 +46,7 @@ class Home
 
         // Adds image data (directory & file array) to 
         foreach($result as &$row) {
-            $blog_dir = ('assets/images/'.$row->blog_id.'/');
+            $blog_dir = ('assets/images/blogs/'.$row->blog_id.'/');
             $blog_files = array_values(array_diff(scandir($blog_dir), array('..', '.')));
             $blog_images = array('dir' => $blog_dir, 'images' => $blog_files);
             (array)$row = array_merge((array)$row, $blog_images);
@@ -99,7 +102,6 @@ class Home
 
     public function register()
     {
-        //show($_POST);
         $user = new User;
         $user->insert($_POST);
         redirect('home');
@@ -112,13 +114,9 @@ class Home
         redirect('home');
     }
 
-    public function abook()
-    {
-        $this->view('abook');
-    }
-
     public function template()
     {
+        
         $this->view('template');
     }
 

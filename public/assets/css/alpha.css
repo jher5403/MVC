@@ -31,9 +31,19 @@
     justify-items: center;
 }
 
-#progress-bar {
+#util-bar {
     margin-left: auto;
     margin-right: auto;
+    justify-content: space-evenly;
+}
+
+.col {
+    display:grid;
+    justify-items: center;
+    align-content: center;
+}
+
+#progress-bar {
     margin-top: 5px;
     padding: 20px;
     height: 100px;
@@ -65,3 +75,10 @@
     max-width: 250px;
     max-height: 250px;
 }
+
+#abook-modal {
+    --bs-modal-max-width: 1400px;
+    --bs-modal-width: 1000px;
+    justify-items: center;
+}
+
