@@ -3,6 +3,9 @@ namespace Controller;
 
 defined('ROOTPATH') OR exit('Error: Access denied.');
 
+/**
+ * Handles nearly all the logic for and between the view and database.
+ */
 Trait MainController
 {
     public function view($name)

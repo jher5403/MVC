@@ -4,6 +4,9 @@ namespace Core;
 
 defined('ROOTPATH') OR exit('Error: Access denied');
 
+/**
+ * Used to handle session information.
+ */
 class Session
 {
 

@@ -1,6 +1,12 @@
 <?php
 defined('ROOTPATH') OR exit('Error: Access denied.');
 
+/**
+ * Handles mySQL specific functions.
+ * Table specific queries are handled by the Model classes.
+ * 
+ * Extends Model classes.
+ */
 Trait Database
 {
     private function connect() 

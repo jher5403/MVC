@@ -6,6 +6,10 @@ use function PHPSTORM_META\type;
 
 defined('ROOTPATH') OR exit('Error: Access denied');
 
+/**
+ * Not used, and maybe will not use?
+ * Might change if we get issues with image paths.
+ */
 class Image
 {
     public function resize($filename, $max_size = 700)

@@ -2,7 +2,7 @@
 defined('ROOTPATH') OR exit('Error: Access denied.');
 
 /**
- * Loads a model?
+ * Automatically loads all Model subclasses.
  */
 spl_autoload_register(function($classname)
 {

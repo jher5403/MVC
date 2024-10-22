@@ -3,6 +3,10 @@ namespace Model;
 
 defined('ROOTPATH') OR exit('Error: Access denied.');
 
+/**
+ * Handles queries for specific tables.
+ * Contains additional parameters for queries.
+ */
 Trait Model
 {
     use \Database;
@@ -14,9 +18,23 @@ Trait Model
     // Might implement primary key for queries.
 
     /**
+     * A complicated select where function that uses arrays for queries.
+     * Will select all attributes from the row IF defined by the $data array.
+     * Will also filter the query based on the $filter array.
      * 
-     * $data: Array of keys your searching for.
-     * $filter: Array of keys your filtering out.
+     * Use whereSimple for a more straightforward selection function.
+     * 
+     * Example Query: 
+     * 
+     * 'SELECT * FROM users WHERE email= :email && first_name= :first_name && reset_token!= :reset_token'
+     * 
+     * @param mixed $data
+     * 
+     * Array of keys your searching for.
+     * 
+     * @param array $filter
+     *
+     * Array of keys your filtering out.
      */
     public function where($data, $filter = []) 
     {
@@ -42,7 +60,18 @@ Trait Model
         
     }
 
-    public function whereSimple($attributes, $filter) 
+    /**
+     * A straightforward select where query function.
+     * Selects and filters using strings.
+     * 
+     * @param string $attributes
+     * String of attributes to select.
+     * 
+     * @param string $filter
+     * String of conditions to filter.
+     * 
+     */
+    public function whereSimple(string $attributes, string $filter) 
     {
         $query = "SELECT $attributes FROM $this->table WHERE $filter";
         //show($query);
@@ -53,6 +82,8 @@ Trait Model
 
     /**
      * Select all rows between a given attribute range.
+     * It's not very intuitive so I'll probably end up changing this
+     * or making a whole different method instead.
      * 
      * SELECT * FROM `blogs` WHERE privacy_filter = 'public' AND (event_date BETWEEN '2024-05-10' AND '2024-08-07');
      * SELECT * FROM `blogs` WHERE privacy_filter = 'public' AND (title LIKE '%$a%') AND (event_date BETWEEN '2024-05-10' AND '2024-08-07'); 
@@ -73,12 +104,18 @@ Trait Model
         return $this->query($query);
     }
 
+    /**
+     * Returns all rows from a table.
+     */
     public function findAll()
     {
         $query = "SELECT * FROM $this->table  ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
         return $this->query($query);
     }
 
+    /**
+     * Returns the first element of a query.
+     */
     public function first($data, $filter = [])
     {
         $keys = array_keys($data);
@@ -104,6 +141,12 @@ Trait Model
         return false;
     }
     
+    /**
+     * Inserts a row into a table.
+     * 
+     * @param array $data
+     * Array of row attributes to insert.
+     */
     public function insert($data)
     {
         if(!empty($this->allowed_columns)) {

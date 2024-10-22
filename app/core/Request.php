@@ -4,6 +4,9 @@ namespace Core;
 
 defined('ROOTPATH') OR exit('Error: Access denied');
 
+/**
+ * Not used. Not sure if will use.
+ */
 class Request
 {
     /**

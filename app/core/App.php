@@ -1,6 +1,12 @@
 <?php
 defined('ROOTPATH') OR exit('Error: Access denied.');
 
+/**
+ * Handles routing by URL. URL will reference controller if it exists in the controllers directory.
+ * 
+ * ...MVC/public/ Is the root.
+ * 
+ */
 class App 
 {
     private $controller = 'Home';
@@ -19,7 +25,7 @@ class App
         $URL = $this->splitURL();
 
         /**
-         * Selects Controller.
+         * Selects Controller from url.
          */
         $filename = "../app/controllers/".ucfirst($URL[0]).'.php';
         if(file_exists($filename)) {
@@ -36,7 +42,7 @@ class App
         $controller = new ('\Controller\\'.$this->controller);
 
         /**
-         * Selects method.
+         * Selects controller method from url.
          */
         if(!empty($URL[1])) 
         {
