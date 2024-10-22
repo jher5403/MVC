@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 
-			<form id="login-form" method="POST">
+			<form id="login-form" method="GET" action="<?=ROOT?>home/login">
 
 				<div class="modal-header">
 					<h3>Login</h3>

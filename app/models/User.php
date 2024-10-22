@@ -7,6 +7,8 @@ class User
 {
     use Model;
 
+    protected $order_type = 'asc';
+    protected $order_column = 'email';
     protected $table = 'users';
     protected $allowed_columns = [
         'first_name',

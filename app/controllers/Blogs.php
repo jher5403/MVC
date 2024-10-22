@@ -8,13 +8,13 @@ use Model\{
 
 defined('ROOTPATH') OR exit('Error: Access denied');
 
-class Home
+class Blogs
 {
     use MainController;
 
     protected $displayType;
     protected $currentBlogs; // Refactor to public blogs
-    protected $myBlogs; // No idea if can use myBlogs view. Remains until can find out.
+    protected $myBlogs;
     protected $logged;
     protected $admin;
 
@@ -26,27 +26,14 @@ class Home
         $this->logged = $ses->is_logged();
         $this->admin = $ses->user('role');
 
-        // Use switchase maybe?
-        if (empty($this->displayType))
-        {
-            $this->getPublicBlogs();
-        }
 
-        //show($this->logged);
-        //show($this->admin);
-
-        $this->view('home');
+        $this->getMyBlogs();
+        $this->view('my.blogs');
     }
 
     public function about()
     {
         $this->view('about');
-    }
-
-    public function myBlogs()
-    {
-        $this->getMyBlogs();
-        $this->view('my.blogs');
     }
     
     public function getPublicBlogs()
@@ -93,7 +80,7 @@ class Home
             (array)$row = array_merge((array)$row, $blog_images);
         }
 
-        show($result);
+        //show($result);
         $result = json_encode($result);
 
         $this->myBlogs = $result;

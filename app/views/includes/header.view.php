@@ -5,11 +5,23 @@
             <ul class="nav nav-pills">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/home">Home</a>
+                    <a class="nav-link" href="<?=ROOT?>home">Home</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="<?=ROOT?>home/about">About</a>
+                </li>
+
+                <li class="nav-item user-button">
+                    <a class="nav-link" href="<?=ROOT?>abook">A-book</a>
+                </li>
+
+                <li class="nav-item user-button">
+                    <a class="nav-link" href="<?=ROOT?>blogs">User Blogs</a>
+                </li>
+
+                <li class="nav-item admin-button">
+                    <a class="nav-link" href="<?=ROOT?>admin">Admin</a>
                 </li>
 
                 <li class="nav-item">

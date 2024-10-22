@@ -21,7 +21,7 @@ class Abook
         $ses = new \Core\Session;
         $blog = new Blog;
         $book = new Book;
-        $user_email = $ses->get('USER')[0]->email;
+        $user_email = $ses->user('email');
 
         $blogsResult = $blog->whereSimple('*', "creator_email = '{$user_email}'");
 
