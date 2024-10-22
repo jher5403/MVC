@@ -21,9 +21,13 @@ Trait Database
             if(is_array($result) && count($result))
             {
                 return $result;
+            } else {
+                return false;
             }
+        } else {
+            return false;
         }
-        return false;
+        
     }
 
     public function get_row($query, $data = [])

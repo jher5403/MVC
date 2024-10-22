@@ -11,6 +11,7 @@ Trait Model
     // ORDER BY column1 DESC, column2
     protected $order = ['column' => 'blog_id', 'type' => 'asc'];
     //protected $table;                     // Table used in query. **MUST BE DEFINED BY SUB CLASS**
+    // Might implement primary key for queries.
 
     /**
      * 
@@ -115,13 +116,30 @@ Trait Model
 
         $keys = array_keys($data);
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES (:".implode(',:', $keys).")";
-        echo $query;
+        //echo $query;
         $this->query($query, $data);
         
         return false;
     }
 
-    public function update($id, $data, $id_col='blog_id')
+    /**
+     * Performs an update query.
+     * 
+     * @example update(11, $data, 'blog_id')
+     *      11      | The ID of the blog your updaing
+     *      $data   | data{['creator_email' => 'bob@email.com'], ['blog_id' => 11], ...}
+     *      blog_id | The primary key attribute to match to the ID.
+     * 
+     * @param mixed $id
+     * The value of the column your updating.
+     * 
+     * @param Array $data
+     * Collection of key-value pairs.
+     * 
+     * @param mixed $id_col
+     * The primary key of the table.
+     */
+    public function update($id, $data, $id_col='id')
     {
         if(!empty($this->allowed_columns)) 
         {
@@ -143,16 +161,30 @@ Trait Model
         $query .= " WHERE $id_col = :$id_col ";
 
         $data[$id_col] = $id; // Has to go near end for some reason.
-        $this->query($query, $data);
+        return $this->query($query, $data);
 
+        //Old return value
         return false;
     }
 
-    public function delete($id, $id_col='blog_id')
+    /**
+     * Deletes a given row.
+     * 
+     * @param mixed $id
+     * The value of the primary key for the row.
+     * 
+     * @param mixed $id_col
+     * Column of id to delete.
+     * 
+     * @example {
+     * delete(11, 'blog_id')
+     * Deletes blog whose blog_id == 11
+     */
+    public function delete($id, $id_col='id')
     {
         $data[$id_col] = $id;
         $query = "DELETE FROM $this->table WHERE $id_col = :$id_col ";
-        $this->query($query, $data);
+        return $this->query($query, $data);
 
         return false;
     }

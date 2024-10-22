@@ -11,9 +11,6 @@ class User
     protected $order_column = 'email';
     protected $table = 'users';
     protected $allowed_columns = [
-        'first_name',
-        'last_name',
-        'password',
-        'email',
+        
     ];
 }
